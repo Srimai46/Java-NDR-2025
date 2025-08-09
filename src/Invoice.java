@@ -1,3 +1,10 @@
+/*
+ * 6. Invoice Class
+ * This class represents an invoice Linking customer to a total amount.
+ */
+
+
+
 //Composition Concept
 // Relationship 'has-a' between classes
 // รถยนต์มีเครื่องยนต์ มีล้อ มีเบาะนั่ง
@@ -58,24 +65,29 @@ public class Invoice {
         return customer.getName();
     }
 
-    public int getCustomerDiscount() {
-        return customer.getDiscount();
-    }
+    // public int getCustomerDiscount() {
+    //     return customer.getDiscount();
+    // }
 
     // คำนวณ ยอดเงินสุดท้ายหลังหักส่วนลด
+    // Core business logic : apply the customer's discount policy
     public double getAmountAfterDiscount() {
-        // // คำนวณหาส่วนลดจริง
+        // คำนวณหาส่วนลดจริง
         // double discountAmount = (this.amount * customer.getDiscount()) / 100.0;
-        // // คำนวณหายอดเงินสึดท้ายหลังหักส่วนลด
-        // //return this.amount - discountAmount;
+        // คำนวณหายอดเงินสึดท้ายหลังหักส่วนลด
+        // return this.amount - discountAmount;
 
-        return this.amount * (1 - customer.getDiscount() / 100.0);
+        // return this.amount * (1 - customer.getDiscount() / 100.0);
+        return this.customer.getdiscountPolicy().applyDiscount(this.amount);
     }
 
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return String.format("Invoice[id=%d , customer=%s , amount=%.2f]" , this.id , customer , this.amount);
+        // return String.format("Invoice[id=%d , customer=%s , amount=%.2f]" , this.id , customer , this.amount);
+        return "Invoice{ " + "id= " + id + ", customerID= " + getCustomerId() + ", customerName= " + getCustomerName() + ", originalAmount= " +
+        String.format("%.2f", amount) + ", discountAmount= " + String.format("%.2f", (amount - getAmountAfterDiscount())) + 
+        ", amountAfterDiscount= " + String.format("%.2f", getAmountAfterDiscount()) + " }";
     }
 
 }
