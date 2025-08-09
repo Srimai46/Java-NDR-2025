@@ -45,7 +45,7 @@ public class VIPBonusDiscountPolicy implements DiscountPolicy {
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        return String.format("%d base + %d bonus over %.2f", basePercent, bonusPercent, bonusThreshold);
+        return String.format("%d%% base + %d bonus over %.2f", basePercent, bonusPercent, bonusThreshold);
     }
 
     
